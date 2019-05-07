@@ -1,0 +1,157 @@
+{
+    "type": "object",
+    "properties": {
+        "projectName": {
+            "required": true,
+            "type": "string"
+        },
+        "access_token": {
+            "type": "string"
+        },
+        "alt": {
+            "type": "string",
+            "enum": [
+                "json",
+                "media",
+                "proto"
+            ],
+            "default": "json"
+        },
+        "callback": {
+            "type": "string"
+        },
+        "fields": {
+            "type": "string"
+        },
+        "key": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "uploadType": {
+            "type": "string"
+        },
+        "upload_protocol": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "An error event which is reported to the Error Reporting system.",
+            "properties": {
+                "context": {
+                    "description": "[Optional] A description of the context in which the error occurred.",
+                    "properties": {
+                        "httpRequest": {
+                            "description": "The HTTP request which was processed when the error was\ntriggered.",
+                            "properties": {
+                                "method": {
+                                    "description": "The type of HTTP request, such as `GET`, `POST`, etc.",
+                                    "type": "string"
+                                },
+                                "referrer": {
+                                    "description": "The referrer information that is provided with the request.",
+                                    "type": "string"
+                                },
+                                "remoteIp": {
+                                    "description": "The IP address from which the request originated.\nThis can be IPv4, IPv6, or a token which is derived from the\nIP address, depending on the data that has been provided\nin the error report.",
+                                    "type": "string"
+                                },
+                                "responseStatusCode": {
+                                    "description": "The HTTP response status code for the request.",
+                                    "format": "int32",
+                                    "type": "integer"
+                                },
+                                "url": {
+                                    "description": "The URL of the request.",
+                                    "type": "string"
+                                },
+                                "userAgent": {
+                                    "description": "The user agent information that is provided with the request.",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "reportLocation": {
+                            "description": "The location in the source code where the decision was made to\nreport the error, usually the place where it was logged.\nFor a logged exception this would be the source line where the\nexception is logged, usually close to the place where it was\ncaught.",
+                            "properties": {
+                                "filePath": {
+                                    "description": "The source code filename, which can include a truncated relative\npath, or a full path from a production machine.",
+                                    "type": "string"
+                                },
+                                "functionName": {
+                                    "description": "Human-readable name of a function or method.\nThe value can include optional context like the class or package name.\nFor example, `my.package.MyClass.method` in case of Java.",
+                                    "type": "string"
+                                },
+                                "lineNumber": {
+                                    "description": "1-based. 0 indicates that the line number is unknown.",
+                                    "format": "int32",
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "sourceReferences": {
+                            "description": "Source code that was used to build the executable which has\ncaused the given error message.",
+                            "items": {
+                                "description": "A reference to a particular snapshot of the source tree used to build and\ndeploy an application.",
+                                "properties": {
+                                    "repository": {
+                                        "description": "Optional. A URI string identifying the repository.\nExample: \"https://github.com/GoogleCloudPlatform/kubernetes.git\"",
+                                        "type": "string"
+                                    },
+                                    "revisionId": {
+                                        "description": "The canonical and persistent identifier of the deployed revision.\nExample (git): \"0035781c50ec7aa23385dc841529ce8a4b70db1b\"",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "user": {
+                            "description": "The user who caused or was affected by the crash.\nThis can be a user ID, an email address, or an arbitrary token that\nuniquely identifies the user.\nWhen sending an error report, leave this field empty if the user was not\nlogged in. In this case the\nError Reporting system will use other data, such as remote IP address, to\ndistinguish affected users. See `affected_users_count` in\n`ErrorGroupStats`.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "eventTime": {
+                    "description": "[Optional] Time when the event occurred.\nIf not provided, the time when the event was received by the\nError Reporting system will be used.",
+                    "format": "google-datetime",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "[Required] The error message.\nIf no `context.reportLocation` is provided, the message must contain a\nheader (typically consisting of the exception type name and an error\nmessage) and an exception stack trace in one of the supported programming\nlanguages and formats.\nSupported languages are Java, Python, JavaScript, Ruby, C#, PHP, and Go.\nSupported stack trace formats are:\n\n* **Java**: Must be the return value of [`Throwable.printStackTrace()`](https://docs.oracle.com/javase/7/docs/api/java/lang/Throwable.html#printStackTrace%28%29).\n* **Python**: Must be the return value of [`traceback.format_exc()`](https://docs.python.org/2/library/traceback.html#traceback.format_exc).\n* **JavaScript**: Must be the value of [`error.stack`](https://github.com/v8/v8/wiki/Stack-Trace-API)\nas returned by V8.\n* **Ruby**: Must contain frames returned by [`Exception.backtrace`](https://ruby-doc.org/core-2.2.0/Exception.html#method-i-backtrace).\n* **C#**: Must be the return value of [`Exception.ToString()`](https://msdn.microsoft.com/en-us/library/system.exception.tostring.aspx).\n* **PHP**: Must start with `PHP (Notice|Parse error|Fatal error|Warning)`\nand contain the result of [`(string)$exception`](http://php.net/manual/en/exception.tostring.php).\n* **Go**: Must be the return value of [`runtime.Stack()`](https://golang.org/pkg/runtime/debug/#Stack).",
+                    "type": "string"
+                },
+                "serviceContext": {
+                    "description": "[Required] The service context in which this error has occurred.",
+                    "properties": {
+                        "resourceType": {
+                            "description": "Type of the MonitoredResource. List of possible values:\nhttps://cloud.google.com/monitoring/api/resources\n\nValue is set automatically for incoming errors and must not be set when\nreporting errors.",
+                            "type": "string"
+                        },
+                        "service": {
+                            "description": "An identifier of the service, such as the name of the\nexecutable, job, or Google App Engine service name. This field is expected\nto have a low number of values that are relatively stable over time, as\nopposed to `version`, which can be changed whenever new code is deployed.\n\nContains the service name for error reports extracted from Google\nApp Engine logs or `default` if the App Engine default service is used.",
+                            "type": "string"
+                        },
+                        "version": {
+                            "description": "Represents the source code version that the developer provided,\nwhich could represent a version label or a Git SHA-1 hash, for example.\nFor App Engine standard environment, the version is set to the version of\nthe app.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

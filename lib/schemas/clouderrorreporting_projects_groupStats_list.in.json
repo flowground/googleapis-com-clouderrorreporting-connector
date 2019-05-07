@@ -1,0 +1,65 @@
+{
+    "type": "object",
+    "properties": {
+        "alignment": {
+            "type": "string",
+            "enum": [
+                "ERROR_COUNT_ALIGNMENT_UNSPECIFIED",
+                "ALIGNMENT_EQUAL_ROUNDED",
+                "ALIGNMENT_EQUAL_AT_END"
+            ]
+        },
+        "alignmentTime": {
+            "type": "string"
+        },
+        "groupId": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "order": {
+            "type": "string",
+            "enum": [
+                "GROUP_ORDER_UNSPECIFIED",
+                "COUNT_DESC",
+                "LAST_SEEN_DESC",
+                "CREATED_DESC",
+                "AFFECTED_USERS_DESC"
+            ]
+        },
+        "pageSize": {
+            "type": "integer"
+        },
+        "pageToken": {
+            "type": "string"
+        },
+        "projectName": {
+            "required": true,
+            "type": "string"
+        },
+        "timedCountDuration": {
+            "type": "string"
+        },
+        "serviceFilter_resourceType": {
+            "type": "string"
+        },
+        "serviceFilter_service": {
+            "type": "string"
+        },
+        "serviceFilter_version": {
+            "type": "string"
+        },
+        "timeRange_period": {
+            "type": "string",
+            "enum": [
+                "PERIOD_UNSPECIFIED",
+                "PERIOD_1_HOUR",
+                "PERIOD_6_HOURS",
+                "PERIOD_1_DAY",
+                "PERIOD_1_WEEK",
+                "PERIOD_30_DAYS"
+            ]
+        }
+    }
+}

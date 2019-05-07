@@ -1,0 +1,152 @@
+{
+    "title": "Stackdriver Error Reporting",
+    "description": "Groups and counts similar errors from cloud services and applications, reports new errors, and provides access to error groups and their associated errors.\n",
+    "docsUrl": "https://cloud.google.com/error-reporting/",
+    "url": "https://api.apis.guru/v2/specs/googleapis.com/clouderrorreporting/v1beta1/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://clouderrorreporting.googleapis.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "Oauth2": {
+                "label": "Oauth 2.0 authentication",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "clouderrorreporting_projects_groups_get": {
+            "main": "./lib/actions/clouderrorreporting_projects_groups_get.js",
+            "title": "Get the specified group.",
+            "description": "Get the specified group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/clouderrorreporting_projects_groups_get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "clouderrorreporting_projects_groups_update": {
+            "main": "./lib/actions/clouderrorreporting_projects_groups_update.js",
+            "title": "Replace the data for the specified group.\nFails if the group does not exist.",
+            "description": "Replace the data for the specified group.\nFails if the group does not exist.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/clouderrorreporting_projects_groups_update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "clouderrorreporting_projects_deleteEvents": {
+            "main": "./lib/actions/clouderrorreporting_projects_deleteEvents.js",
+            "title": "Deletes all error events of a given project.",
+            "description": "Deletes all error events of a given project.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/clouderrorreporting_projects_deleteEvents.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "clouderrorreporting_projects_events_list": {
+            "main": "./lib/actions/clouderrorreporting_projects_events_list.js",
+            "title": "Lists the specified events.",
+            "description": "Lists the specified events.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/clouderrorreporting_projects_events_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "clouderrorreporting_projects_events_report": {
+            "main": "./lib/actions/clouderrorreporting_projects_events_report.js",
+            "title": "Report an individual error event.\n\nThis endpoint accepts **either** an OAuth token,\n**or** an [API key](https://support.google.com/cloud/answer/6158862)\nfor authentication. To use an API key, append it to the URL as the value of\na `key` parameter. For example:\n\n`POST https://clouderrorreporting.googleapis.com/v1beta1/projects/example-project/events:report?key=123ABC456`",
+            "description": "Report an individual error event.\n\nThis endpoint accepts **either** an OAuth token,\n**or** an [API key](https://support.google.com/cloud/answer/6158862)\nfor authentication. To use an API key, append it to the URL as the value of\na `key` parameter. For example:\n\n`POST https://clouderrorreporting.googleapis.com/v1beta1/projects/example-project/events:report?key=123ABC456`",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/clouderrorreporting_projects_events_report.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "clouderrorreporting_projects_groupStats_list": {
+            "main": "./lib/actions/clouderrorreporting_projects_groupStats_list.js",
+            "title": "Lists the specified groups.",
+            "description": "Lists the specified groups.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/clouderrorreporting_projects_groupStats_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

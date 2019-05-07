@@ -1,0 +1,47 @@
+{
+    "type": "object",
+    "properties": {
+        "groupId": {
+            "type": "string"
+        },
+        "pageSize": {
+            "type": "integer"
+        },
+        "pageToken": {
+            "type": "string"
+        },
+        "projectName": {
+            "required": true,
+            "type": "string"
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "uploadType": {
+            "type": "string"
+        },
+        "upload_protocol": {
+            "type": "string"
+        },
+        "serviceFilter_resourceType": {
+            "type": "string"
+        },
+        "serviceFilter_service": {
+            "type": "string"
+        },
+        "serviceFilter_version": {
+            "type": "string"
+        },
+        "timeRange_period": {
+            "type": "string",
+            "enum": [
+                "PERIOD_UNSPECIFIED",
+                "PERIOD_1_HOUR",
+                "PERIOD_6_HOURS",
+                "PERIOD_1_DAY",
+                "PERIOD_1_WEEK",
+                "PERIOD_30_DAYS"
+            ]
+        }
+    }
+}
